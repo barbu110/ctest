@@ -20,8 +20,15 @@ struct assertions_container
 
 typedef void (*test_case_fn)(struct assertions_container *);
 
+struct test_case
+{
+  const char *suite;
+  const char *test_name;
+  test_case_fn fn;
+};
+
 static size_t tests_count = 0;
-static test_case_fn test_cases[MAX_TEST_CASES];
+static struct test_case test_cases[MAX_TEST_CASES];
 
 #define ASSERT_EQ(lhs, rhs) \
   do { \
@@ -31,7 +38,8 @@ static test_case_fn test_cases[MAX_TEST_CASES];
 
 void __declare_test(const char *suite, const char *name, test_case_fn fnptr)
 {
-  test_cases[tests_count++] = fnptr;
+  struct test_case __test_case = {suite, name, fnptr};
+  test_cases[tests_count++] = __test_case;
 }
 
 #define __TEST_FUNC_NAME(suite, test_name) __test_##suite##_##test_name
@@ -61,8 +69,9 @@ int main(int argc, char **argv)
   size_t test_idx = 0;
   for (; test_idx != tests_count; test_idx++)
   {
+    const struct test_case *test_case = &test_cases[test_idx];
     struct assertions_container cont = {0};
-    test_cases[test_idx](&cont);
+    (test_case->fn)(&cont);
 
     size_t assertion_idx = 0;
     for (; assertion_idx != cont.size; assertion_idx++)
@@ -78,6 +87,8 @@ int main(int argc, char **argv)
         return 1;
       }
     }
+
+    printf("[OK] %s::%s\n", test_case->suite, test_case->test_name);
   }
 
   return 0;
