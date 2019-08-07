@@ -44,7 +44,7 @@ void __declare_test(const char *suite, const char *name, test_case_fn fnptr)
 #define DECLARE_TEST(suite, test_name)                                      \
   do {                                                                      \
     __declare_test(#suite, #test_name, __TEST_FUNC_NAME(suite, test_name)); \
-  while (0)
+  } while (0)
 
 TEST(MySuite, Something)
 {
