@@ -31,7 +31,7 @@ TEST(Basic, Equality)
 
 TEST(Modern, LessThanOrEqual)
 {
-  int a = 10;
+  int a = 30;
   int b = 20;
 
   ASSERT_LTE(a, b);
@@ -67,7 +67,7 @@ void load_suites()
   {
     if(register_suite_tests[j] != NULL)
     {
-      printf("Suite %s registered\n", my_suites[j]);
+      printf("Suite %s registered.\n", my_suites[j]);
       ((void (*)())(register_suite_tests[j]))();
     }
     j++;
@@ -101,13 +101,13 @@ int main(int argc, char **argv)
       load_suites();
       break;
     }
-    if(!(strcmp(argv[i], "--suite")))
+    else if(!(strcmp(argv[i], "--suite")))
     {
       while(j != NR_SUITES)
       {
         if(!(strcmp(my_suites[j], argv[i + 1])))
         {
-          printf("Suite %s registered\n", my_suites[j]);
+          printf("Suite %s registered.\n", my_suites[j]);
           ((void (*)())(register_suite_tests[j]))();
           break;
         }
@@ -115,13 +115,21 @@ int main(int argc, char **argv)
       }
       j = 0;
     }
-    if(!(strcmp(argv[i], "--help")))
+    else if(!(strcmp(argv[i], "--help")))
     {
       print_usage();
       exit(EXIT_SUCCESS);
+    }    
+    else
+    {
+      fprintf(stderr, "Unknown test/option '%s' specified. Use --help to see the valid options.\n\n", argv[i]);
+  
+      exit(EXIT_FAILURE);
     }
+
   }
   
+  printf("\nRunning test suites.\n");
   run_all_tests();
   exit(EXIT_SUCCESS);
 }
