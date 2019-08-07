@@ -38,6 +38,8 @@ struct assertions_container
   struct assertion assertions[MAX_ASSERTIONS_PER_TEST];
 };
 
+typedef enum {false, true} bool;
+
 void __register_test(const char *suite, const char *name, test_fn fn);
 
 #define __TEST_FUNC_NAME(suite, test_name) __test_##suite##_##test_name
