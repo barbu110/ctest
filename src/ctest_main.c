@@ -36,12 +36,13 @@ int run_all_tests()
           assertion->first_operand, assertion->op, assertion->second_operand
         );
 
-        return 1;
+        return ASSERT_FAILURE;
       }
     }
 
     printf("[PASSED] %s::%s\n", test_case->suite, test_case->test_name);
   }
 
-  return 0;
+  printf("\nAll tests have been passed.\n");
+  return ASSERT_SUCCESS;
 }

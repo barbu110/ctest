@@ -4,6 +4,10 @@
 
 #pragma once
 
+/* We define these the same for all test suites. */
+#define	ASSERT_FAILURE	1	/* Failing assert status. */
+#define	ASSERT_SUCCESS	0	/* Successful assert status. */
+
 #define ASSERT_NEQ(lhs, rhs)                                             \
   do {                                                                   \
     struct assertion __assertion = {"!=", #lhs, #rhs, ((lhs) != (rhs))}; \
