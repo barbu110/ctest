@@ -48,7 +48,7 @@ TEST(Modern, GreaterThanOrEqual)
 TEST(Modern, TestStr)
 {
   char *a = "my_string1";
-  char *b = "my_string1";
+  char *b = "my_string";
 
  ASSERT_STRCMP(a, b, IOPSENUM_MEQ);
 }

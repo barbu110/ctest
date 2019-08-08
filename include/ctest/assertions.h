@@ -64,7 +64,7 @@ int opi(int a, enum iops_enum b, int c);
   do {                                                                   \
     char result = strcmp(lhs, rhs);                                      \
     char var = opi(result, EXPECTED_RELATION, 0);                        \
-    struct assertion __assertion = {"!=", "strcmp("#lhs", "#rhs")",      \
+    struct assertion __assertion = {"==", "strcmp("#lhs", "#rhs")",      \
                                       #EXPECTED_RELATION, var};          \
     cont->assertions[cont->size++] = __assertion;                        \
   } while (0)
