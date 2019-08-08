@@ -118,11 +118,11 @@ int main(int argc, char **argv)
         {
           printf("Suite %s registered.\n", my_suites[j]);
           ((void (*)())(register_suite_tests[j]))();
+          j = 0; i++;
           break;
         }
         j++;
       }
-      j = 0;
     }
     else if(!(strcmp(argv[i], "--help")))
     {
@@ -132,7 +132,6 @@ int main(int argc, char **argv)
     else
     {
       fprintf(stderr, "Unknown test/option '%s' specified. Use --help to see the valid options.\n\n", argv[i]);
-
       exit(EXIT_FAILURE);
     }
 
