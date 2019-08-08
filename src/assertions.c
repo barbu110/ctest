@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019 by Victor Barbu and Alexandru - George Rusu. All Rights Reserved.
+ */
+
 #include "ctest/assertions.h"
 
 int opi(int a, enum iops_enum b, int c)

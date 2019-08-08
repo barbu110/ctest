@@ -8,4 +8,4 @@ src/assertions.o: src/assertions.c
 
 clean:
 	@echo "Cleaning..."
-	@rm -rfv src/ctest_main.o example
+	@rm -rfv src/ctest_main.o src/assertions.o example

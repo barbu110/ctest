@@ -1,6 +1,6 @@
-//
-// Copyright (c) 2019 by Victor Barbu. All Rights Reserved.
-//
+/*
+ * Copyright (c) 2019 by Victor Barbu and Alexandru - George Rusu. All Rights Reserved.
+ */
 
 #pragma once
 
@@ -37,8 +37,6 @@ struct assertions_container
   size_t size;
   struct assertion assertions[MAX_ASSERTIONS_PER_TEST];
 };
-
-typedef enum {false, true} bool;
 
 void __register_test(const char *suite, const char *name, test_fn fn);
 
