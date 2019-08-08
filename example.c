@@ -31,7 +31,7 @@ TEST(Basic, Equality)
 
 TEST(Modern, LessThanOrEqual)
 {
-  int a = 30;
+  int a = 10;
   int b = 20;
 
   ASSERT_LTE(a, b);
@@ -45,6 +45,14 @@ TEST(Modern, GreaterThanOrEqual)
   ASSERT_GTE(a, b);
 }
 
+TEST(Modern, TestStr)
+{
+  char *a = "my_string1";
+  char *b = "my_string1";
+
+ ASSERT_STRCMP(a, b, IOPSENUM_MEQ);
+}
+
 void register_basic_tests()
 {
   REGISTER_TEST(Basic, MathRelation);
@@ -55,6 +63,7 @@ void register_modern_tests()
 {
   REGISTER_TEST(Modern, LessThanOrEqual);
   REGISTER_TEST(Modern, GreaterThanOrEqual);
+  REGISTER_TEST(Modern, TestStr);
 }
 
 void *register_suite_tests[NR_SUITES] = {register_basic_tests, NULL, register_modern_tests};
@@ -71,7 +80,7 @@ void load_suites()
       ((void (*)())(register_suite_tests[j]))();
     }
     j++;
-  }  
+  }
 }
 
 void print_usage()
@@ -119,16 +128,16 @@ int main(int argc, char **argv)
     {
       print_usage();
       exit(EXIT_SUCCESS);
-    }    
+    }
     else
     {
       fprintf(stderr, "Unknown test/option '%s' specified. Use --help to see the valid options.\n\n", argv[i]);
-  
+
       exit(EXIT_FAILURE);
     }
 
   }
-  
+
   printf("\nRunning test suites.\n");
   run_all_tests();
   exit(EXIT_SUCCESS);
