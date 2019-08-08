@@ -1,6 +1,6 @@
-//
-// Copyright (c) 2019 by Victor Barbu. All Rights Reserved.
-//
+/*
+ * Copyright (c) 2019 by Victor Barbu and Alexandru - George Rusu. All Rights Reserved.
+ */
 
 #include "ctest/ctest.h"
 #include "ctest/assertions.h"
