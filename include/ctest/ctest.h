@@ -52,4 +52,4 @@ void __register_test(const char *suite, const char *name, test_fn fn);
     __register_test(#suite, #test_name, __TEST_FUNC_NAME(suite, test_name)); \
   } while (0)
 
-int run_all_tests();
+int run_tests(const char *suite);

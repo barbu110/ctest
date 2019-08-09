@@ -13,12 +13,20 @@ void __register_test(const char *suite, const char *name, test_fn fn)
   test_cases[tests_count++] = __test_case;
 }
 
-int run_all_tests()
+int run_tests(const char *suite)
 {
   size_t test_idx = 0;
   for (; test_idx != tests_count; test_idx++)
   {
     const struct test_case *test_case = &test_cases[test_idx];
+    if (suite && strcmp(test_case->suite, suite) != 0)
+    {
+      /*
+       * This test is not in the required suite. Skip it.
+       */
+      continue;
+    }
+
     struct assertions_container cont = {0};
     (test_case->fn)(&cont);
 
