@@ -8,7 +8,7 @@ LDYNAMIC := -Llib/
 
 LDLIBRPATH := lib/
 
-SHARED_LIB = lib/libctests.so
+SHARED_LIB = lib/libctest.so
 
 #Currently, the supported suites are Basic and Modern.
 MY_SUITES := -DSUITE=Basic
@@ -23,8 +23,8 @@ $(SHARED_LIB): $(OBJECTS)
 	$(CC) $(CFLAGS) -shared -o $@ $^
 
 example:
-	$(CC) $(MY_SUITES) $(CFLAGS) -Wl,-rpath=$(LDLIBRPATH) $(SRC) -o $@ $(LDYNAMIC) -lctests
+	$(CC) $(MY_SUITES) $(CFLAGS) -Wl,-rpath=$(LDLIBRPATH) $(SRC) -o $@ $(LDYNAMIC) -lctest
 
 clean:
 	@echo "Cleaning..."
-	@rm -rfv src/ctest_main.o src/assertions.o example lib/libctests.so
+	@rm -rfv src/ctest_main.o src/assertions.o example lib/libctest.so
