@@ -8,6 +8,13 @@
 
 #include "ctest/assertions.h"
 
+#define _STRINGIFY(s) #s
+#define STRINGIFY(s) _STRINGIFY(s)
+
+#ifndef SUITE
+#define SUITE __ALL__
+#endif
+
 #define MAX_ASSERTIONS_PER_TEST 128
 #define MAX_TEST_CASES 128
 
@@ -53,3 +60,5 @@ void __register_test(const char *suite, const char *name, test_fn fn);
   } while (0)
 
 int run_all_tests();
+
+int _ctest_main(int argc, char **argv);

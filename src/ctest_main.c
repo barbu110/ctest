@@ -6,11 +6,17 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h> ///< exit()
+#include <string.h> ///< strcmp()
 
 void __register_test(const char *suite, const char *name, test_fn fn)
 {
-  struct test_case __test_case = {suite, name, fn};
-  test_cases[tests_count++] = __test_case;
+  if((!(strcmp(suite, STRINGIFY(SUITE)))) || (!(strcmp(STRINGIFY(SUITE), "__ALL__"))))
+  {
+    struct test_case __test_case = {suite, name, fn};
+    test_cases[tests_count++] = __test_case;
+  }
+  return;
 }
 
 int run_all_tests()
@@ -45,4 +51,11 @@ int run_all_tests()
 
   printf("\nAll tests have been passed.\n");
   return ASSERT_SUCCESS;
+}
+
+int _ctest_main(int argc, char **argv)
+{
+  printf("\nRunning test suites.\n\n");
+  run_all_tests();
+  exit(EXIT_SUCCESS);
 }
